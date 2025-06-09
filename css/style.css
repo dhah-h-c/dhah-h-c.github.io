@@ -1,0 +1,961 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* Color Variables */
+    --text-color: #003338;
+    --accent-color: #FF4000;
+    --light-green: #21d6b7;
+    --dark-green: #095e5b;
+    --gradient-color: linear-gradient(to right, #ff4000, #ff6633, #ffb366);
+    --green-gradient: linear-gradient(to right, #095e5b, #07726a, #21d6b7);
+}
+
+/* Body and Background */
+body {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    line-height: 1.8;
+    background-image: url("../images/green-bookcase-background.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative; /* Allows items to remain in place while controlling stacking order */
+}
+body::before {
+    content: ''; /* Creates an empty pseudo-element for the background overlay */
+    z-index: 1; /* Positions overlay above the background image but below page contents */
+    position: fixed; /* Fixes the overlay in place, covering the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    pointer-events: none; /* Allows items above the overlay to be interacted with */
+}
+body * {
+    z-index: 2; /* Keeps text above the overlay */
+    position: relative; /* Allows items to remain in place while controlling stacking order */
+}
+.page-container {
+    margin-left: 60px;
+    margin-right: 60px;
+    width: calc(100% - 120px); /* Maintains equal margin on both sides if page is resized */
+    margin: 0 auto; /* Centres the container when needed */
+}
+
+/* ======================
+   Navigation Bar
+   ====================== */
+.nav {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: space-between; /* Distributes items evenly with space between them */
+    align-items: center; /* Centres items vertically in the navigation bar */
+    margin: 10px 0;
+    padding: 10px 40px;
+    border-bottom: 2px solid var(--light-green);
+}
+
+/* Navigation Logo Link */
+.nav .logo a{
+    margin: 0;
+    padding: 0 20px;
+    text-decoration: none;
+    font-weight: 300;
+    word-spacing: 0.2rem;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.nav .logo span {
+    -webkit-text-fill-color: var(--light-green);
+    color: var(--light-green);
+}
+
+/* Navigation links */
+.nav-links ul {
+    display: flex; /* Enables Flexbox for flexible layout */
+    list-style: none; /* Removes the default bullets, numbers, and markers from list items */
+    margin: 0;
+    padding: 0;
+}
+.nav-links ul li {
+    margin: 0 10px;
+    padding: 10px 25px 0px;
+}
+.nav-links ul li a {
+    display: inline-block; /* Displays list items horizontally */
+    position: relative; /* Positions :before items relative to this element */
+    padding: 5px 0;
+    background: var(--accent-color) var(--gradient-color);
+    background-size: 200% 100%; /* Expands background for hover effect */
+    background-position: -100%; /* Sets initial position for hover effect */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: all 0.3s ease-in-out;
+}
+.nav-links ul li a:before {
+    content: ''; /* Creates an empty pseudo-element */
+    display: block; /* Displays element as a block element */
+    position: absolute; /* Positions effect relative to parent element */
+    bottom: -3px; /* Places the underline slightly below the text */
+    left: 0;
+    width: 0; /* Starts with zero width for hover effect */
+    height: 3px; /* Thickness of the underline */
+    background: var(--accent-color) var(--gradient-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for navigation links */
+.nav-links ul li a:hover {
+    background-position: 0; /* Moves the gradient into view */
+}
+.nav-links ul li a:hover::before {
+    width: 100%;
+}
+
+/* ========================================
+   Main Sections (Landing, About, Register)
+   ======================================== */
+.intro {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stack items vertically */
+}
+#landing {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    justify-content: flex-start;
+    margin: 100px 0;
+}
+#about {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    align-items: flex-end; /* Right aligns child items */
+    margin: 100px 0;
+}
+#register {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    align-items: flex-end; /* Right aligns child items */
+    height: auto;
+    margin: 100px 0;
+}
+.intro h1, .intro h2{
+    margin-bottom: 10px;
+    font-size: 4rem;
+    font-weight: 200;
+    word-spacing: 10px;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.intro h1 span, .intro h2 span {
+    -webkit-text-fill-color: var(--light-green);
+    color: var(--light-green);
+}
+.intro p {
+    max-width: 45vw;
+    font-size: 1.2rem;
+    font-weight: 400;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#about p, #register p {
+    text-align: right;
+}
+.line {
+    flex-shrink: 0; /* Keeps line visible when page is resized */
+    width: 8rem;
+    min-width: 8rem;
+    height: 0.2rem;
+    margin-bottom: 20px;
+    background: var(--accent-color) var(--gradient-color);
+}
+
+/* Intro Button Links */
+.button-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: flex-start;
+    margin: 10px 0;
+    gap: 20px;
+}
+.button-link {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: center; /* Centres items horizontally */
+    align-items: center; /* Centres items vertically */
+    width: 180px;
+    padding: 15px;
+    background: var(--accent-color) var(--green-gradient);
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(255, 255, 255, 0.2) 2px 2px 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none; /* Removes underline from the button text */
+    text-transform: uppercase;
+    cursor: pointer; /* Indicates the button is clickable */
+    transition: all 0.5s ease, box-shadow 0.2s;
+}
+.button-link:hover {
+    box-shadow: 4px 4px 4px rgba(9, 94, 91, 0.5);
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    transform: scale(1.05);
+}
+
+/* ======================
+   Book Stats Highlights
+   ====================== */
+.stats-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: row; /* Arranges items in a horizontal row */
+    justify-content: space-around; /* Distributes items evenly with space around them */
+    align-items: stretch; /* Centres items vertically */
+    height: auto;
+    gap: 40px;
+}
+.highlight-one, .highlight-two, .highlight-three {
+    flex: 1; /* Makes all three sections take equal space */
+    max-width: 30%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--light-green);
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px 5px rgba(33, 214, 183, 0.2);
+    text-align: center;
+}
+.stats-heading {
+    margin: 0 0 10px;
+    color: var(--light-green);
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+}
+.highlight-one .line, 
+.highlight-two .line, 
+.highlight-three .line {
+    margin: 0 auto 20px;
+}
+.stats-container p span {
+    color: #ffffff;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+.stats-container p {
+    margin: 5px 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-transform: none;
+}
+
+/* ==========================
+   Favourite Quotes Section
+   ========================== */
+   .quotes-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: row; /* Arranges items in a horizontal row */
+    justify-content: space-around; /* Distributes child items evenly with space around them */
+    align-items: stretch; /* Stretches child items vertically to fill the container */
+    height: auto;
+    gap: 40px;
+}
+
+/* Background Images */
+.left-quote, .middle-quote, .right-quote {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    justify-content: space-between; /* Distributes items evenly with space between them */
+    flex: 1; /* Makes items take up equal space */
+    max-width: 30%;
+    padding: 30px;
+    margin: 80px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--light-green);
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px 5px rgba(33, 214, 183, 0.2);
+    overflow: hidden; /* Clips any content that extends beyond the container */
+    text-align: center;
+}
+.left-quote {
+    background-image: url("../images/skateboarder.jpg");
+    background-size: cover;
+}
+.middle-quote {
+    background-image: url("../images/knight-storm.jpg");
+    background-size: cover;
+}
+.right-quote {
+    background-image: url("../images/woman-on-stairs-bw.jpg");
+    background-size: cover;
+    background-position: 45%; /* Adjustment to centre image in container */
+}
+.left-quote::before, .middle-quote::before, .right-quote::before {
+    content: ''; /* Creates an empty pseudo-element */
+    z-index: 1; /* Positions the overlay above the background image but below content */
+    position: absolute; /* Positions overlay relative to the parent container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+    pointer-events: none; /* Prevents overlay from blocking interactions with items on top */
+}
+
+/* Quote Text Boxes */
+.text-box {
+    padding-bottom: 80px;
+    text-align: left;
+    text-transform: none;
+}
+.left-quote i, .middle-quote i, .right-quote i {
+    margin-bottom: 20px;
+    color: var(--light-green);
+    font-size: 4rem;
+    text-align: left;
+}
+.left-quote p, .middle-quote p, .right-quote p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+    line-height: 2rem;
+}
+
+/* Quote Citations */
+.citation {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: row; /* Arranges items in a horizontal row */
+    justify-content: center; /* Centres items horizontally */
+    align-items: stretch; /* Stretches items vertically to fill the container */
+    width: 100%;
+}
+.cite-author, .cite-book-title {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: row; /* Arranges items in a horizontal row */
+    justify-content: center; /* Centres items horizontally */
+    align-items: center; /* Centres items vertically */
+    flex: 1; /* Makes both items take up equal space */
+    min-height: 50px;
+    flex-basis: 50%;
+    border: solid 2px var(--light-green);
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--light-green);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* ==========================
+   Recent Reads Books Images
+   ========================== */
+.image-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: space-around; /* Distributes items evenly with space around them */
+    align-items: center; /* Centres items vertically */
+    margin: 40px 0;
+    gap: 20px;
+}
+.image-container img {
+    width: 15vw;
+    height: auto;
+    object-fit: cover;
+    box-shadow: rgba(255, 255, 255, 0.2) 6px 6px 12px;
+    transition: transform 0.5s ease;
+}
+.image-container img:hover {
+    box-shadow: rgba(9, 94, 91, 0.5) 6px 6px 12px, rgba(33, 214, 183, 0.3) 4px 4px 4px;
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
+/* =============================
+   Register Section (Home Page) 
+   ============================= */
+#register {
+    min-height: 40vh;
+    padding: 0 60px 60px;
+    background-image: url("../images/neon-woman-with-headphones.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 25%;
+    background-attachment: fixed;
+}
+/* ==============
+   Blog Section
+   ============== */
+.blog-intro {
+    margin: 40px 0 60px;
+    text-align: left;
+}
+.blog-intro h2 {
+    margin-bottom: 10px;
+    font-size: 4rem;
+    font-weight: 200;
+    word-spacing: 10px;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.blog-intro h2 span {
+    -webkit-text-fill-color: var(--light-green);
+    color: var(--light-green);
+}
+.blog-intro p {
+    max-width: 45vw;
+    font-size: 1.2rem;
+    font-weight: 400;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Blog Lists */
+.blog-list {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: row; /* Arranges items in a horizontal row */
+    justify-content: center; /* Centres child items horizontally */
+    align-items: stretch; /* Stretches child items vertically to fill the container */
+    flex-wrap: wrap; /* Allows items to wrap onto multiple lines if the container is too small */
+    margin: 60px 0;
+    gap: 40px;
+}
+.blog-list .reading, .blog-list .listening {
+    flex: 1; /* Distributes space equally between items */
+    width: 50%;
+    height: auto;
+    padding: 40px;
+    border: 2px solid var(--light-green);
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px 5px rgba(33, 214, 183, 0.2);
+    overflow: hidden; /* Clips any content that extends beyond the container */
+}
+.blog-list .reading {
+    background-image: url(../images/lightbulb-brain.jpg);
+    background-size: cover;
+}
+.blog-list .listening {
+    background-image: url(../images/book-with-headphones.jpg);
+    background-size: cover;
+}
+.listening::before, .reading::before {
+    content: ''; /* Creates an empty pseudo-element */
+    z-index: 1; /* Makes items take up equal space */;
+    position: absolute; /* Positions background effect relative to parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+.blog-list h3 {
+    margin: 0 0 20px;
+    color: var(--light-green);
+    font-size: 2rem;
+    font-weight: 400;
+}
+.blog-list ul {
+    list-style: disc;
+    padding-left: 15px;
+    color: #ffffff;
+    text-transform: none;
+}
+
+.blog-list ul li {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+.blog-list i {
+    margin: 15px 0;
+    color: var(--light-green);
+    font-size: 4rem;
+}
+
+/* Embedded Video */
+.video {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    align-items: center; /* Centres child items vertically in the container */
+}
+.video-container {
+    position: relative; /* Positions iframe relative to this element */
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9; /* Sets container to 16:9 aspect ratio */
+    margin: 40px 0;
+    background: black; /* Background fill colour if the video doesn't load */
+    border-radius: 8px;
+    overflow: hidden; /* Clips any content that extends beyond the container */
+}
+.video-container iframe {
+    position: absolute; /* Positions video relative to the parent container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ============
+   Books Page
+   ============ */
+.book-stats, .book-list {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    align-items: flex-start; /* Aligns tables at the top */ 
+    margin: 0 40px;
+}
+.book-stats h1, .book-list h2 {
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.book-stats h1 span, .book-list h2 span {
+    -webkit-text-fill-color: var(--light-green);
+    color: var(--light-green);
+}
+.book-stats h4, .book-list h4 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 400;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Tables */
+.table-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: space-between; /* Distributes tables evenly with space between them */
+    align-items: flex-start; /* Align tables at the top */
+    width: 100%;
+    gap: 80px;
+}
+.table-group {
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    align-items: flex-start; /* Align tables at the top */
+    width: 50%; /* Ensure tables take equal width */
+}
+.table-group h4 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 400;
+    background: var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stats-table, .authors-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse; /* Removes border outline */
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden; /* Clips any content that extends beyond the container */
+}
+.stats-table th, .stats-table td,
+.authors-table th, .authors-table td {
+    padding: 20px 60px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    text-align: center; /* Centres text in both header and data cells */
+}
+.stats-table td, .authors-table td, .book-table td {
+    text-transform: none; /* Makes text normal case for readability */
+}
+.stats-table thead, .book-table thead, .authors-table thead {
+    background: var(--dark-green); /* Background colour for table header rows */
+}
+.book-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes border outline */
+    border-radius: 8px;
+    overflow: hidden; /* Clips any content that extends beyond the container */
+}
+.book-list .table-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: center; /* Centres items horizontally */
+    margin-bottom: 40px;
+    width: 100%;
+}
+.book-table th, .book-table td {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    text-align: left; /* Aligns text to the left */
+}
+.book-table th:nth-child(1), .book-table td:nth-child(1) {
+    width: 80px;
+    padding-left: 40px;
+    white-space: nowrap; /* Prevents text from wrapping */
+    text-align: left; /* Override for specific columns */
+}
+.book-table th:nth-child(5), .book-table td:nth-child(5) {
+    width: 100px;
+    padding-right: 40px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-align: center; /* Override for specific columns */
+}
+
+/* Hover Effect for Table Rows */
+.stats-table tbody tr:hover, .book-table tbody tr:hover {
+    background-color: rgba(9, 94, 91, 0.3);
+    cursor: pointer; /* Indicates row is a clickable link */
+}
+
+/* Scroll-to-Top Button */
+#scroll-button {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixes the button's position */
+    z-index: 99; /* Positions button on top of all other items */
+    bottom: 40px; /* Distance from bottom edge */
+    right: 40px; /* Distance from right edge */
+    width: 80px;
+    height: 80px;
+    background: var(--green-gradient);
+    border: 2px solid var(--light-green);
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px 5px rgba(33, 214, 183, 0.2);
+    color: #ffffff;
+    font-size: 2.5rem;
+    overflow: hidden; /* Clips any content that extends beyond the container */
+    cursor: pointer; /* Indicates button is clickable */
+    transition: 0.5s ease;
+}
+
+/* Hover Effect for Scroll to Top Button */
+#scroll-button:hover {
+    box-shadow: 0px 0px 20px 5px rgba(33, 214, 183, 0.8); /* Increases outer glow effect */
+}
+
+/* ==============
+   Register Page
+   ============== */
+.info-reg-container {
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: space-between; /* Distributes items evenly with space between them */
+    align-items: stretch; /* Stretches items vertically to fill the container */
+    position: relative; /* Allows positioning for ::before effect */
+    width: 80%;
+    height: 100%;
+    margin: 40px auto;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(9, 94, 91, 0.3);
+    overflow: hidden; /* Clips any content that extends beyond the container */
+}
+
+.info-reg-container::before {
+    content: ''; /* Creates an empty pseudo-element */
+    position: absolute; /* Positions the background image relative to the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat url('../images/green-bookcase-background.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: scaleX(-1); /* Flips the background image */
+    z-index: -1; /* Positions background image behind the content */
+}
+
+/* Info Section (Left Side) */
+.info-section {
+    flex: 1; /* Distributes space equally between items */
+    display: flex; /* Enables Flexbox for flexible layout */
+    flex-direction: column; /* Stacks child items vertically */
+    justify-content: space-between; /* Distributes child items evenly with space between them */
+    align-items: flex-start; /* Aligns child items to the left of the container */
+    margin-left: 20px;
+    padding: 40px;
+    text-align: left;
+}
+.info-header {
+    align-self: flex-start; /* Aligns heading at the top of the container */
+    margin-bottom: auto;
+}
+.info-section h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    word-spacing: 10px;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.info-section h1 span {
+    -webkit-text-fill-color: initial; /* Resets to default to allow custom color*/
+    color: var(--light-green);
+}
+
+/* Thank You Message */
+.thank-you {
+    align-self: flex-start; /* Aligns items to the left */
+    width: 80%;
+    margin-top: auto; /* Pushes it to the bottom */
+}
+.thank-you h3 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.thank-you h4 {
+    margin: 0 0 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.thank-you p {
+    margin-bottom: 0;
+    padding-bottom: 30px;
+    font-size: 1rem;
+    font-weight: 400;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Register Form (Right Side) */
+.form-section {
+    flex: 0.60; /* Makes register form take up 85% of the available space within the flex container */
+    display: flex; /* Enables Flexbox for flexible layout */
+    justify-content: center; /* Centres child items horizontally */
+    align-items: center; /* Centres child items vertically */
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px); /* Blurred background effect */
+    -webkit-backdrop-filter: blur(25px);
+}
+.form-section form {
+    width: 100%;
+    padding: 0;
+}
+.form-section h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.form-section span {
+    -webkit-text-fill-color: var(--light-green); /* Fallback */
+    color: var(--light-green);
+}
+.input-box {
+    position: relative; /* Allows positioning for the labels */
+    margin: 25px 0 30px;
+}
+/* Labels */
+.input-box label {
+    position: absolute; /* Positions labels in input box relative to their parent */
+    top: 50%;
+    left: 45px;
+    transform: translateY(-50%); /* Centres labels vertically */
+    color: rgb(255, 255, 255, 0.5);
+    font-weight: 600;
+    text-transform: none; /* Makes text normal case for readability */
+    pointer-events: none;  /* Allows the input to be clicked even if the label is over it */
+    transition: all 0.3s ease;  /* Smooth transition effect */
+}
+.input-box input {
+    width: 100%;
+    padding: 20px 20px 20px 45px;
+    border-radius: 8px;
+    border: solid 1px rgb(255, 255, 255, 0.2);
+    outline: none; /* Removes border outline */
+    box-sizing: border-box; /* Includes padding and border inside the element’s total width and height */
+    background: rgba(255, 255, 255, 0.05);
+    caret-color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition for border and shadow */
+}
+.input-box i {
+    position: absolute; /* Positions icons in input box relative to the parent element */
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255, 0.5);
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+/* Input Box Effects */
+.input-box input:focus {
+    border: solid 1px var(--dark-green);
+    box-shadow: 0 0 8px rgba(9, 94, 91, 0.8);
+    background: rgba(9, 94, 91, 0.5);
+    background-clip: padding-box;  /* Clips background within the padding area */
+}
+.input-box input:focus + label,
+.input-box input:not(:placeholder-shown) + label {
+    top: 0%; /* Moves label up when input is focused or not empty */
+    background: transparent;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #ffffff; /* Changes label to full opacity white when focused */
+}
+.input-box input:not(:placeholder-shown) {
+    background-color: rgba(93, 143, 126, 0.8); /* Increases input box opacity after typing */
+    color: #ffffff; /* Changes text colour to full opacity white when input box has typed text */
+    font-weight: 400;
+    font-size: 1rem;
+}
+/* Hide Placeholder - included for compatibility */
+.input-box input::placeholder {
+    color: transparent;
+}
+.input-box input:focus + label + i {
+    color: #ffffff;  /* Changes icon colour to full opacity white when focused */
+}
+.input-box input:not(:placeholder-shown) + label + i {
+    color: #ffffff;  /* Changes icon colour to full opacity white when input has text */
+}
+/* Change autocomplete styles in WebKit (source: https://community.weweb.io/t/set-background-colour-of-input-field-when-auto-filled/2782) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #434346;
+  -webkit-text-fill-color: #F1F1F1;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.3) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Validation Messages */
+.input-box.success input {
+    border-color: #09c372;
+}
+.input-box.error input {
+    border-color: #ff3860;
+}
+.input-box .error {
+    position: absolute; /* Positions error message relative to the parent element */
+    bottom: -22px; /* Position the error message below the input box */
+    left: 0;
+    margin-top: 10px; /* Space between the input box and error message */
+    color: #ff3860;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: none; /* Makes text normal case for readability */
+}
+
+/* Register Button and Success Message */
+.register-button {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 40px;
+    background: var(--accent-color) var(--gradient-color);
+    background-size: 200% 100%; /* Expands background for hover effect */
+    background-position: -100%; /* Sets initial position for hover effect */
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-decoration: none; /* Removes underline from the button text */
+    cursor: pointer; /* Changes cursor to indicate button is clickable */
+    transition: all ease 0.5s;
+}
+
+/* Register Button Hover Effect */
+.register-button:hover {
+    background-position: 0; /* Moves the gradient into view for hover effect */
+    color: #ffffff;
+}
+
+/* Success Message */
+.success-message {
+    position: absolute; /* Positions success message relative to the parent container */
+    bottom: -8px; /* Positions success message slightly below the register button */
+    left: 0;
+    right: 0;
+    width: 100%; 
+    margin: auto;
+    color: #09c372;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* ========
+   Footer
+   ======== */
+.site-footer {
+    padding: 20px;
+    margin-top: 60px;
+    background: rgba(9, 94, 91, 0.5);
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 2px solid var(--light-green);
+}
+.footer-text p {
+	font-weight: 600;
+    font-size: 1.2rem;
+    background: var(--accent-color) var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.footer-text p span {
+    position: relative;
+    background-image: var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.footer-text p span::after {
+    content: ''; /* Creates an empty pseudo-element for the background overlay */
+    position: absolute; /* Positions effect relative to parent element */
+    left: 0;
+    bottom: 50%; /* Adjusts line position to strike-through text */
+    width: 100%;
+    height: 2px; /* Thickness of the line through text */
+    background: var(--gradient-color);
+}
+
